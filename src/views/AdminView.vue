@@ -1,0 +1,70 @@
+<script >
+    data
+</script>
+
+<template>
+
+    <nav id="sidebar">
+      <ul>
+        <li id="mainItem">
+          <a class="navOption icon" id="mainIcon" href="#">.</a>
+        </li>
+
+        <li id="profile">
+          <div th:fragment="iconCase">
+            <img th:if="${user.getGender() == user.getGender().MASCULINO || user.getGender() == user.getGender().INTERSEXO}" th:src="@{/images/profile-man.png}" class="icon profileIcon" id="profileMan" alt="man profile icon"></img>
+
+            <img th:if="${user.getGender() == user.getGender().FEMININO}" th:src="@{/images/profile-woman.png}" class="icon profileIcon" id="profileWoman" alt="man profile icon"></img>
+
+          </div>
+          <div id="profileData">
+            <p>Welcome,</p>
+            <p th:text="${user.getFirstName()}"></p>
+          </div>
+        </li>
+
+        <div id="navList" th:include="~{dashboard_layout.html :: navListMain}">
+
+        </div>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <div id="topNav" class="topNav">
+      <div id="burgerIcon" class="burgerIcon">
+        ☰
+      </div>
+
+      <div id="alerts">
+        <div id="alertIcon"></div>
+        <div id="iconDetails">
+
+          <div th:replace="~{admin_dashboard.html :: iconCase}"></div>
+          <div th:text="${user.getFirstName() + ' ' + user.getLastName()}" id="profileName"></div>
+
+          <div id="profileOptions">
+            <ul>
+              <li><a href="/admin/dashboard/profile">Profile</a></li>
+              <li><a href="/admin/dashboard/profile/settings">Settings</a></li>
+              <li><a href="/logout" id="logout">Log Out</a></li>
+            </ul>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+  </main>
+
+  <script th:src="@{/js/dashboardLayout.js}"></script>
+  </body>
+  </html>
+
+</template>
+
+<style >
+
+</style>
