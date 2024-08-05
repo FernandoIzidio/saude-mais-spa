@@ -1,22 +1,12 @@
-<template>
-<NavBar></NavBar>
+<script lang="ts">
+import {defineComponent} from 'vue';
+import NavBar from '@/components/NavBar.vue';
 
-  <div class="containerBanners">
-    <img src="../assets/Saúdemais.jpg" alt="banner" class="active">
-    <img src="../assets/bannerVerde.jpg" alt="banner">
-  </div>
-</template>
-
-<script >
-import NavBar from '../components/NavBar.vue'
-
-export default {
-  name: 'HomeView',
-  components: {
-    NavBar
-  },
+export default defineComponent({
+name: "HomeView",
+  components: {NavBar},
   mounted() {
-    const banners = document.querySelectorAll('.containerBanners img');
+    const banners = document.querySelectorAll('#containerBanners img');
     let currentIndex = 0;
 
     function showNextBanner() {
@@ -27,60 +17,41 @@ export default {
 
     setInterval(showNextBanner, 4000);
   }
-}
+})
 </script>
 
-<style scoped>
+<template>
+  <NavBar></NavBar>
+  <div id="containerBanners">
+    <img src="../assets/saude-mais.jpg" alt="banner" class="active">
+    <img src="../assets/banner-green.jpg" alt="banner">
+  </div>
+</template>
 
-* {
-  box-sizing: border-box;
-}
-
-
-.containerBanners {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  width: 100%;
-  height: auto;
-}
-
-.containerBanners img {
-  position: absolute;
-  top: 0;
-  width: 100%;
-  opacity: 0;
-  transition: opacity 1s ease-in-out;
-}
-
-.containerBanners img.active {
-  opacity: 1;
-}
-
-@media screen and (max-width: 768px) {
-  .nav_header {
-    flex-direction: column;
-    align-items: flex-start;
+<style>
+  .home-page *{
+    vertical-align: baseline;
   }
 
-  .nav_header ul {
-    flex-direction: column;
-    align-items: flex-start;
+  .home-page #containerBanners {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    height: auto;
   }
 
-  .nav_header a {
-    font-size: 1.5rem;
+  .home-page #containerBanners img {
+    position: absolute;
+    top: 0.1rem;
+    width: 100%;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
   }
 
-  .logSignin {
-    flex-direction: column;
-    align-items: flex-start;
-    font-size: 1.5rem;
+  .home-page #containerBanners img.active {
+    opacity: 1;
   }
 
-  .logo {
-    font-size: 2.5rem;
-  }
-}
 </style>
